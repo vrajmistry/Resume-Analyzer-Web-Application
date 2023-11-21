@@ -19,3 +19,21 @@ This web application allows users to upload resumes in PDF format and ask questi
    
    ```bash
    python -m venv venv
+
+3. **Activate the virtual environment:**:
+
+   ```bash
+   venv\Scripts\activate
+
+3. **Install dependencies:**:
+
+   ```bash
+   pip install flask PyPDF2 transformers torch flask-cors
+
+4. **Run App:**:
+
+   ```bash
+   python app.py
+
+4. **Open the HTML file:**:
+   - Open the simple.html file in a web browser to interact with the application.
