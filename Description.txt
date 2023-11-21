@@ -1,0 +1,15 @@
+The app.py is a Flask web application that allows users to upload PDF files (resumes) and ask questions about their content. The application includes:
+
+ - Configuration for file uploads, limiting file size to 16MB and restricting uploads to PDF files.
+ - A route /upload for handling PDF uploads. It saves the uploaded file, extracts text using PyPDF2, and saves the extracted text in a .txt file.
+ - The extract_text_from_pdf function reads PDF files and extracts text from them.
+ - Integration of the LayoutLM model from Hugging Face for question-answering. This model is used in the /answer-question route, which accepts a resume name and a question, and returns an answer extracted from the resume's text.
+ - CORS (Cross-Origin Resource Sharing) is enabled for all routes, allowing requests from different origins.
+ - The /answer-question route handles an OPTIONS request to comply with CORS preflight checks and a POST request to process and answer questions based on resume content.
+
+The simple.html file provides a simple frontend interface for this application with two main functionalities:
+
+ - Uploading PDF Files: Users can upload PDF files using a form, which sends the file to the /upload route in the Flask app.
+ - Asking Questions: After uploading, users can ask questions related to the uploaded resume. This is handled by a JavaScript function submitQuestion that sends a POST request with JSON data to the /answer-question route. The answer is then displayed to the user via an alert.
+
+Overall, this application demonstrates file handling, text extraction from PDFs, integration of NLP models for question-answering, and basic front-end interactions using HTML and JavaScript.
