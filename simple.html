@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+<body>
+
+<form action="http://127.0.0.1:5000/upload" method="post" enctype="multipart/form-data">
+  Select PDF to upload:
+  <input type="file" name="file" id="pdf">
+  <input type="submit" value="Upload PDF" name="submit">
+</form>
+
+<br>
+
+<!-- Updated form to use JavaScript for submitting -->
+<form id="questionForm">
+  Enter Resume Name (without extension):
+  <input type="text" name="resume_name" id="resume_name">
+  <br>
+  Enter Question:
+  <input type="text" name="question" id="question">
+  <br>
+  <input type="button" value="Ask Question" onclick="submitQuestion()">
+</form>
+
+<script>
+function submitQuestion() {
+  // Get the values from the form
+  const resumeName = document.getElementById('resume_name').value;
+  const question = document.getElementById('question').value;
+
+  // Send a POST request with the JSON data
+  fetch('http://127.0.0.1:5000/answer-question', {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify({ resume_name: resumeName, question: question })
+  })
+  .then(response => response.json())
+  .then(data => {
+    alert('Answer: ' + data.answer); // Display the answer
+  })
+  .catch((error) => {
+    console.error('Error:', error);
+  });
+}
+</script>
+
+</body>
+</html>
